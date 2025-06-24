@@ -1122,7 +1122,7 @@
                     <div class="inline-input-group">
                         <span id="labelFunFact" contenteditable="true" oninput="generateMarkdown()">👻️ Fun fact:</span>
                         <input type="text" id="funFact"
-                            placeholder="e.g., I can write code, but don't ask me to explain it after 6 months!"
+                            placeholder="e.g., Real programmers count from 0."
                             oninput="generateMarkdown()">
                     </div>
                     <div class="inline-input-group">
@@ -1135,7 +1135,7 @@
                         <span id="labelCustomCurrentlyLine" contenteditable="true" oninput="generateMarkdown()">🌱
                             Personal Growth Philosophy:</span>
                         <input type="text" id="customCurrentlyLine"
-                            placeholder="e.g., “Be a student of the process, not just the outcome.”"
+                            placeholder="e.g.,“What we think, we become.”"
                             oninput="generateMarkdown()">
                     </div>
 
@@ -1968,6 +1968,40 @@
             md += `<ul align="left">\n${currentlySectionContent}</ul>\n\n`;
         }
 
+        const languages = Array.from(document.querySelectorAll('.lang:checked')).map(e => e.value);
+        if (languages.length) {
+            md += `<h2 align="center">🛠️ Languages & Tools</h2>\n\n<p align="center">\n`;
+            languages.forEach(lang => {
+                const iconUrl = typeof languageIcons !== 'undefined' ? languageIcons[lang] : '';
+                if (iconUrl) {
+                    md += `  <img src="${iconUrl}" alt="${lang}" width="40" height="40"/> `;
+                } else {
+                    md += `${lang} `;
+                }
+            });
+            md += '\n</p>\n\n';
+        }
+
+        const socials = ["linkedin", "github", "leetcode", "twitter", "stackoverflow", "gmail", "facebook", "instagram", "youtube", "codechef", "discord", "codeforces"];
+        const socialList = [];
+        socials.forEach(id => {
+            const val = document.getElementById(id)?.value;
+
+            if (val && typeof socialIcons !== 'undefined' && socialIcons[id] && typeof socialUrls !== 'undefined' && socialUrls[id]) {
+                let url = socialUrls[id];
+                if (id === 'github' && githubUsername) {
+                    url = url.replace('{id}', githubUsername);
+                } else {
+                    url = url.replace('{id}', val);
+                }
+                socialList.push(`<a href="${url}" target="_blank"><img src="${socialIcons[id]}" width="30px"/></a>`);
+            }
+        });
+
+        if (socialList.length > 0) {
+            md += `<h2 align="center">🌐 Get in touch</h2>\n\n<p align="center">\n${socialList.join(' ')}\n</p>\n\n`;
+        }
+
         let githubStatsBadges = '';
         if (githubUsername) {
             githubStatsBadges += '<p align="center">\n\n';
@@ -2002,8 +2036,6 @@
             githubStatsBadges += '</p>\n\n';
         }
 
-
-
         if (githubStatsBadges) {
             md += `<h2 align="center">Current Github Stats</h2>\n\n`;
             md += `${githubStatsBadges}\n\n`;
@@ -2033,40 +2065,6 @@
             const cardURL = `https://leetcard.jacoblin.cool/${leetCodeUsername}?theme=${theme}&font=${font}&border=${border}&radius=${radius}&title_color=${titleColor}`;
 
             md += `<p align="center"><img src="${cardURL}" alt="LeetCode Stats" /></p>\n\n`;
-        }
-
-        const languages = Array.from(document.querySelectorAll('.lang:checked')).map(e => e.value);
-        if (languages.length) {
-            md += `<h2 align="center">🛠️ Languages & Tools</h2>\n\n<p align="center">\n`;
-            languages.forEach(lang => {
-                const iconUrl = typeof languageIcons !== 'undefined' ? languageIcons[lang] : '';
-                if (iconUrl) {
-                    md += `  <img src="${iconUrl}" alt="${lang}" width="40" height="40"/> `;
-                } else {
-                    md += `${lang} `;
-                }
-            });
-            md += '\n</p>\n\n';
-        }
-
-        const socials = ["linkedin", "github", "leetcode", "twitter", "stackoverflow", "gmail", "facebook", "instagram", "youtube", "codechef", "discord", "codeforces"];
-        const socialList = [];
-        socials.forEach(id => {
-            const val = document.getElementById(id)?.value;
-
-            if (val && typeof socialIcons !== 'undefined' && socialIcons[id] && typeof socialUrls !== 'undefined' && socialUrls[id]) {
-                let url = socialUrls[id];
-                if (id === 'github' && githubUsername) {
-                    url = url.replace('{id}', githubUsername);
-                } else {
-                    url = url.replace('{id}', val);
-                }
-                socialList.push(`<a href="${url}" target="_blank"><img src="${socialIcons[id]}" width="30px"/></a>`);
-            }
-        });
-
-        if (socialList.length > 0) {
-            md += `<h2 align="center">🌐 Get in touch</h2>\n\n<p align="center">\n${socialList.join(' ')}\n</p>\n\n`;
         }
 
         let supportSection = '';
