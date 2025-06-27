@@ -5,8 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub README Generator</title>
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <style>
@@ -794,7 +793,6 @@
             height: 50px;
             width: auto;
             margin-bottom: 10px;
-            border-radius: 50%;
         }
 
         .footer-logo p {
@@ -910,6 +908,45 @@
             margin-bottom: 5px;
             color: #586069;
         }
+
+        .community-feedback-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .feedback-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feedback-card img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .feedback-card p {
+            margin-top: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #444;
+        }
+
 
         @media (max-width: 768px) {
             .header-icons {
@@ -1032,7 +1069,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="main-content-wrapper">
         <h1>GitHub <b style="font: small-caps; font-weight: 900; text-decoration: underline">PROFILE README</b>
@@ -1124,8 +1160,7 @@
                     </div>
                     <div class="inline-input-group">
                         <span id="labelFunFact" contenteditable="true" oninput="generateMarkdown()">👻️ Fun fact:</span>
-                        <input type="text" id="funFact"
-                            placeholder="e.g., Real programmers count from 0."
+                        <input type="text" id="funFact" placeholder="e.g., Real programmers count from 0."
                             oninput="generateMarkdown()">
                     </div>
                     <div class="inline-input-group">
@@ -1137,8 +1172,7 @@
                     <div class="inline-input-group">
                         <span id="labelCustomCurrentlyLine" contenteditable="true" oninput="generateMarkdown()">🌱
                             Personal Growth Philosophy:</span>
-                        <input type="text" id="customCurrentlyLine"
-                            placeholder="e.g.,“What we think, we become.”"
+                        <input type="text" id="customCurrentlyLine" placeholder="e.g.,“What we think, we become.”"
                             oninput="generateMarkdown()">
                     </div>
 
@@ -1212,7 +1246,6 @@
                                 <option value="Amatic SC">Amatic SC</option>
                             </select>
                         </div>
-
                         <div class="setting-group">
                             <label>Border:</label>
                             <select id="leetCardBorder" onchange="generateMarkdown()">
@@ -1592,7 +1625,7 @@
             </div>
 
         </div>
-        <button onclick="showGeneratorPage()" class="back-to-generator-button">Back to Generator</button>
+        <button onclick="showPage('main')" class="back-to-generator-button">Back to Generator</button>
     </div>
 
     <div id="iconsSection" class="icons-page-content" style="display: none;">
@@ -1639,9 +1672,11 @@
 
             <div class="icon-source-section">
                 <h2>Some Others..</h2>
-                <p>Our appreciation also goes to <a href="https://iconify.design/" target="_blank">Iconify.Design</a>
-                    and <a href="https://fontawesome.com/" target="_blank">Font Awesome. Finally, we acknowledge <a
-                            href="https://openresty.org/en/" target="_blank">OpenResty</a> (official website).</p>
+                <p>Our appreciation also goes to <a href="https://iconify.design/" target="_blank">IconifyDesign,</a>
+                    <a href="https://fontawesome.com/" target="_blank">Font Awesome</a>
+                    and finally, we acknowledge<a href="https://openresty.org/en/" target="_blank">OpenResty</a>
+                    (official website).
+                </p>
                 <div class="icon-example">
                     <img src="https://api.iconify.design/logos:backbone.svg" alt="Backbone Icon" class="inline-icon">
                     <img src="https://api.iconify.design/logos:babel.svg" alt="Babel Icon" class="Elixir icon">
@@ -1650,22 +1685,45 @@
                 <p>We appreciate these platforms for making their brand assets available for use.</p>
             </div>
 
-            <button onclick="showGeneratorPage()" class="back-to-generator-button">Back to Generator</button>
+            <button onclick="showPage('main')" class="back-to-generator-button">Back to Generator</button>
         </div>
     </div>
+
+    <div id="communityLoveSection" class="icons-page-content" style="display: none;">
+        <div class="header-icons">
+            <h1>Community Love 💖</h1>
+            <p>Thanks to all the amazing users who've shown love for this project. We truly appreciate you!</p>
+        </div>
+
+        <div class="community-feedback-container">
+            <div class="feedback-card">
+                <img src="assets/Feedback_1.jpeg" alt="Feedback 1">
+                <p>Thank you, <b>Yash Raj</b>, for the kind words and support!</p>
+            </div>
+
+            <p>If you’ve used the tool and loved it, feel free to share your feedback and we'll showcase it here!</p>
+        </div>
+
+        <button onclick="showPage('main')" class="back-to-generator-button">Back to Generator</button>
+    </div>
+
+
 
     <footer>
         <div class="footer-container">
             <div class="footer-section footer-logo">
-                  <a href="https://saurabsinghrawat.github.io/GitHub-Profile-README-Generator/"><img src="assets/Logo.png" alt="logo"  class="footer-logo-img"></a>
+                <a href="https://saurabsinghrawat.github.io/GitHub-Profile-README-Generator/"><img src="assets/Logo.png"
+                        alt="logo" class="footer-logo-img"></a>
                 <p>GitHub Profile README Generator</p>
             </div>
 
             <div class="footer-section">
                 <h3>Pages</h3>
                 <ul>
-                    <li><a href="#" onclick="showAddonsPage(); return false;">Add-ons</a></li>
-                    <li><a href="#" onclick="showIconsPage(); return false;">Icons & Images</a></li>
+                    <li><a href="#" onclick="showPage('addons'); return false;">Add-ons</a></li>
+                    <li><a href="#" onclick="showPage('icons'); return false;">Icons & Images</a></li>
+                    <li><a href="#" onclick="showPage('community'); return false;">Community Love</a></li>
+
                 </ul>
             </div>
 
@@ -1678,9 +1736,6 @@
             </div>
         </div>
     </footer>
-
-
-
 </body>
 
 
@@ -1695,50 +1750,47 @@
         container.appendChild(line);
     }
 
-
-
-
     function toggleLeetCodeSection() {
         const leetSection = document.getElementById('leetCodeSettings');
         const enabled = document.getElementById('includeLeetCodeBadge').checked;
         leetSection.style.display = enabled ? 'block' : 'none';
     }
 
-    function showAddonsPage() {
-        const mainContent = document.querySelector('.main-content-wrapper');
-        const addonsSection = document.getElementById('addonsSection');
-        const bottomSections = document.querySelectorAll('.bottom-section');
-
-        if (mainContent && addonsSection) {
-            mainContent.style.display = 'none';
-            addonsSection.style.display = 'block';
-
-            bottomSections.forEach(section => {
-                section.style.display = 'none';
-            });
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        iconsSection.style.display = 'none';
-    }
-    function showIconsPage() {
+    function showPage(pageId) {
         const mainContent = document.querySelector('.main-content-wrapper');
         const addonsSection = document.getElementById('addonsSection');
         const iconsSection = document.getElementById('iconsSection');
+        const communityLoveSection = document.getElementById('communityLoveSection');
         const bottomSections = document.querySelectorAll('.bottom-section');
 
-        if (mainContent && addonsSection && iconsSection) {
-            mainContent.style.display = 'none';
-            addonsSection.style.display = 'none';
-            iconsSection.style.display = 'block';
-
-            bottomSections.forEach(section => {
-                section.style.display = 'none';
-            });
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        mainContent.style.display = 'none';
         addonsSection.style.display = 'none';
+        iconsSection.style.display = 'none';
+        communityLoveSection.style.display = 'none';
+
+        bottomSections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        switch (pageId) {
+            case 'main':
+                mainContent.style.display = 'block';
+                bottomSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                break;
+            case 'addons':
+                addonsSection.style.display = 'block';
+                break;
+            case 'icons':
+                iconsSection.style.display = 'block';
+                break;
+            case 'community':
+                communityLoveSection.style.display = 'block';
+                break;
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showGeneratorPage() {
@@ -1962,12 +2014,13 @@
             } else if (customInput) {
                 currentlySectionContent += `<b>${customInput}</b>\n\n`;
             } else if (customLabel && !customInput) {
-                currentlySectionContent += `<ul>${label} <b>${value}</b></ul>\n\n`;
+                currentlySectionContent += `<ul><b>${customLabel}</b></ul>\n\n`;
             }
         });
 
+
         if (currentlySectionContent) {
-            md += `<ul align="left">\n${currentlySectionContent}</ul>\n\n`;
+            md += `<ul align="center">\n${currentlySectionContent}</ul>\n\n`;
         }
 
         const languages = Array.from(document.querySelectorAll('.lang:checked')).map(e => e.value);
@@ -2038,10 +2091,13 @@
             githubStatsBadges += '</p>\n\n';
         }
 
-        if (githubStatsBadges) {
-            md += `<h2 align="center">Current Github Stats</h2>\n\n`;
-            md += `${githubStatsBadges}\n\n`;
+        if (githubUsername && (includeStatsCard || includeStreakCard || includeTopLanguages)) {
+            if (githubStatsBadges) {
+                md += `<h2 align="center">Current Github Stats</h2>\n\n`;
+                md += `${githubStatsBadges}\n\n`;
+            }
         }
+
 
         const includeLeetCodeBadge = document.getElementById('includeLeetCodeBadge')?.checked;
         const leetCodeUsername = document.getElementById('leetcode')?.value?.trim();
